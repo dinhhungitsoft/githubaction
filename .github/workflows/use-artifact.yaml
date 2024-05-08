@@ -1,7 +1,7 @@
 on: push
 jobs:
-  example-job:
-    name: Save output
+  example1:
+    name: create-and-upload-job
     runs-on: ubuntu-latest
     steps:
       - shell: bash
@@ -12,3 +12,12 @@ jobs:
         with:
           name: output-log-file
           path: output.log
+  download-file:
+    name: Download file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: output-log-file
+          needs: create-and-upload-job
